@@ -7,7 +7,7 @@ a table for the data if necessary, and appends rows at regular periodic interval
 sqlite3 to view the data [ $sqlite3 MyPiTemps.db <cr> select * from PiCoreTemps; <cr> ]
 
 Compilation 
-  Program compilation/loading requires packages for sqlite3 and libsqlite3-dev
+  Program compilation/linking requires packages for sqlite3 and libsqlite3-dev
   Use "sudo apt-get install sqlite3 libsqlite3-dev" to install those if you haven't already.
   Connect to install directory and type "$make" to simply compile and link, and then
     "$make install" to move the resulting executable to "/usr/local/bin"
