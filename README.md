@@ -24,4 +24,8 @@ When the program is running, it doesn't keep the database file open: when the pr
 up periodically, it samples the data, opens the database, appends the reading, and closes the 
 database.  So exposure to table corruption as a result of a Pi restart or crash is minimized.
 
+You can generate a graphical representation of the data using the python program CPUTemps.py,
+or you can copy that file to /var/www/cgi-bin/ and use it as a displayable web page
+on your Pi's web site if you're running Apache.
+
   Written by HDTodd, Williston Vermont, November, 2015
