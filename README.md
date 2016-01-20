@@ -1,11 +1,15 @@
-RPiTempLogger
-Raspberry Pi CPU Core Temperature Logging Program
+# RPiTempLogger
+## Raspberry Pi CPU Core Temperature Logging Program
 
 This program appends datetime-stamped recordings of Raspberry Pi CPU core temperatures as rows 
 in an sqlite3 database.  The program uses (creates if necessary) the sqlite3 database, creates
 a table for the data if necessary, and appends rows at regular periodic intervals.  Use
-sqlite3 to view the data [ $sqlite3 MyPiTemps.db <cr> select * from PiCoreTemps; <cr> ].  The 
-package also includes a php page suitable as the foundation for a web site home page that displays
+sqlite3 to view the data
+
+    $sqlite3 MyPiTemps.db
+    >select * from PiCoreTemps
+
+The package also includes a php page suitable as the foundation for a web site home page that displays
 a graphical presentation of the time/temp data, and the package includes a python program
 that will generate an html file for the graphical presentation.  The installation is set to
 install the logging program as a daemon so that it is automatically started at boot time.
@@ -35,3 +39,5 @@ on your Pi's web site if you're running Apache.  The file index-RTL.php is copie
 as a prototype for a web site home page that will display the data graphically.
 
   Written by HDTodd, Williston Vermont, November, 2015
+
+[Sample page from index.php](https://github.com/hdtodd/RPiTempLogger/RPiTL.jpg "Sample page from index.php")
