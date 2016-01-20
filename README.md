@@ -40,4 +40,4 @@ as a prototype for a web site home page that will display the data graphically.
 
   Written by HDTodd, Williston Vermont, November, 2015
 
-[Sample page from index.php](https://github.com/hdtodd/RPiTempLogger/RPiTL.jpg "Sample page from index.php")
+[Sample page from index.php](https://github.com/hdtodd/RPiTempLogger/blob/master/RPiTL.jpg)
