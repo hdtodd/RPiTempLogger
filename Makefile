@@ -8,7 +8,7 @@
 
 PROJ = RPiTempLogger
 CC = gcc
-DBName = MyPiTemps.db
+DBName = /var/databases/MyPiTemps.db
 CFLAGS = -DDBName=\"${DBName}\" -lsqlite3
 LDFLAGS = -lsqlite3
 OBJS = RPiTempLogger.o

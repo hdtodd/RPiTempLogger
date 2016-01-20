@@ -32,7 +32,7 @@ database.  So exposure to table corruption as a result of a Pi restart or crash 
   #define DelaySec 300
 #endif
 #ifndef DBName
-  #define DBName "MyPiTemps.db"
+  #define DBName "/var/databases/MyPiTemps.db"
 #endif
 
 #include <stdio.h>
@@ -120,7 +120,9 @@ void main(int argc, char **argv) {
     rc = sqlite3_exec(db, sqlIns, callback, 0, &zErrMsg);
     if ( rc != SQLITE_OK ) {
       fprintf(stderr, "%RPiTempLogger SQL error during row insert: %s\n", zErrMsg);
+      fprintf(stderr, "Can't write to database file %s\n", DBName);
       sqlite3_free(zErrMsg);
+      exit(EXIT_FAILURE);
     };
 
     /* Done with the DB for now so close it */
