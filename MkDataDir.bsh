@@ -1,0 +1,25 @@
+#!/bin/bash
+#Test for and create, if necessary, a directory for storing the <time, temp> database file
+#
+VDIR=/var
+DBDIR=$VDIR/databases
+BINDIR=/usr/local/bin
+
+if [ ! -w $BINDIR ] ; then
+    echo "You don't have permission to move the executable to the directory $BINDIR"
+    echo "Try 'sudo make install'"
+fi
+
+#If DBDIR exists, we don't worry about writing it since root will be running the
+#  RPiTempLogger executable and should have privs to write that directory and will
+#  create the database file if needed.  But we do need to make sure the directory exists.
+if [ ! -d $DBDIR ] ; then
+    if [ -w $VDIR ] ; then
+	mkdir $DBDIR
+    else
+       echo "You don't have permission to create the data directory $DBDIR"
+       echo "Try 'sudo make install'"
+    fi
+fi
+
+    
