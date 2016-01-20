@@ -5,15 +5,20 @@
 
 This program appends datetime-stamped recordings of Raspberry Pi CPU core temperatures as rows 
 in a sqlite3 database.  The program uses (creates if necessary) the sqlite3 database, creates
-a table for the data if necessary, and appends rows at regular periodic intervals.  Use
-sqlite3 to view the data
+a table for the data if necessary, and appends rows at regular periodic intervals. The data
+can be reported via sqlite3 commands or by using a Python program or web PHP program to display
+the data graphically (code prototypes for both are included in the package).
+
+Use sqlite3 to view the data, e.g.:
 
     $sqlite3 MyPiTemps.db
-    >select * from PiCoreTemps
+    sqlite> select * from PiCoreTemps where DateTime > datetime('now', '-48 hours');
 
-The package also includes a php page suitable as the foundation for a web site home page that displays
-a graphical presentation of the time/temp data, and the package includes a python program
-that will generate an html file for the graphical presentation.  
+The PHP page is suitable as the foundation for a web site home page that displays
+a graphical presentation of the time/temp data.  The Python program
+generates an html file for the graphical presentation, and that file can be viewed with an
+html browser.  The prototype web PHP code and the Python program use the same Google Charts 
+tools and so generate equivalent displays.
 
 [Sample page from index.php](https://github.com/hdtodd/RPiTempLogger/blob/master/RPiTL.jpg)
 
