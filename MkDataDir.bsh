@@ -22,4 +22,9 @@ if [ ! -d $DBDIR ] ; then
     fi
 fi
 
+#Now create the directories for the web-based graphing programs
+if [ ! -d /var/www/cgi-bin/ ] ; then
+    mkdir /var/www/cgi-bin 
+fi
+
     
