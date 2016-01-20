@@ -15,20 +15,21 @@ that will generate an html file for the graphical presentation.  The installatio
 install the logging program as a daemon so that it is automatically started at boot time.
 
 Compilation 
-  Program compilation/linking requires packages for sqlite3 and libsqlite3-dev
-  Use "sudo apt-get install sqlite3 libsqlite3-dev" to install those if you haven't already.
-  Connect to install directory and type "make" to simply compile and link, and then
-    "sudo make install" to move the resulting executable to "/usr/local/bin", set it up
-    to start as a daemon at reboot, and copy the graphing code to /var/www
-  Compile parameters:
+1.  Program compilation/linking requires packages for sqlite3 and libsqlite3-dev
+2.  Use `sudo apt-get install sqlite3 libsqlite3-dev` to install those if you haven't already.
+3.  Connect to install directory and type `make` to simply compile and link to create the executable data logger. Or compile with `gcc -o RPiTempLogger -lsqlite3 RPiTempLogger.c`
+4.  Type `sudo make install` to move the resulting executable to "/usr/local/bin", set it up
+    to start as a daemon at reboot, and copy the graphing code to "/var/www"
+
+Review "Makefile" for more detailed instruction, including options for changing the names and locations of files.
+
+The C program contains several ompile parameters that can be changed, too:
       DelaySec:  time between samplings, in seconds, as an integer [default 300]
       DBName:    path and filename of the database file in which the data will be stored
-                 [default is "MyPiTemps.db" in /var/databases, which is create upon install]
-  Or compile with "gcc -o RPiTempLogger -lsqlite3 RPiTempLogger.c"
-  
-Run as 
-  RPiTempLogger &
-to run detached, or include in startup scripts to run as daemon, which is done as part of install.
+                 [default is "MyPiTemps.db" in "/var/databases", which is created upon install]
+
+Run as   `RPiTempLogger &` to run detached, or include in startup scripts to run as daemon, which is done as part of install.
+
 When the program is running, it doesn't keep the database file open: when the program wakes
 up periodically, it samples the data, opens the database, appends the reading, and closes the 
 database.  So exposure to table corruption as a result of a Pi restart or crash is minimized.
