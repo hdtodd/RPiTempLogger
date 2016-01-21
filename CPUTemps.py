@@ -46,7 +46,7 @@ speriod=(15*60)-1
 # -----
 
 
-dbname='/home/hdtodd/MyPiTemps.db'
+dbname='/var/databases/MyPiTemps.db'
 
 # convert rows from database into a javascript table
 def create_table(rows):
