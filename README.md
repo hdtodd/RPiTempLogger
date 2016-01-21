@@ -76,4 +76,5 @@ as a prototype for a web site home page that will display the data graphically.
 ### Author
 
 Written by HDTodd, Williston Vermont, November, 2015
+hdtodd@gmail.com
 
