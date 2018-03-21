@@ -60,7 +60,11 @@ The C program contains several compile parameters that can be changed, too:
 
 ### Testing
 
-Run as `RPiTempLogger` to test the program.  It starts by sampling an printing the temperature and adding the sample data to the sqlite3 database; it repeats that (every 5 minutes, by default) until terminated.  Run as `RPiTempLogger &` to run detached, which it will do until a reboot.   Or include the command `RPiTempLogger` in a startup script to run as daemon automatically whenever the system is rebooted; that command is added to "/etc/rc.local" by `make install`.
+Run as `RPiTempLogger` to test the program.  It starts by sampling an printing
+the temperature and adding the sample data to the sqlite3 database; it repeats
+that (every 5 minutes, by default) until terminated.  Run as `RPiTempLogger &`
+to run detached, which it will do until a reboot.   Do "sudo make install" to
+install RPiTempLogger as a service that starts at boot time under systemd.  Or include the command `RPiTempLogger` in a startup script to run as daemon automatically whenever the system is rebooted; that command is added to "/etc/rc.local" by `make install`.
 
 ### Routine Operation and Displaying Data
 
@@ -76,5 +80,6 @@ as a prototype for a web site home page that will display the data graphically.
 ### Author
 
 Written by HDTodd, Williston Vermont, November, 2015
+Updated Makefile for installation under systemd March, 2018.
 hdtodd@gmail.com
 

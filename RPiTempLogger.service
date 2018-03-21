@@ -1,0 +1,11 @@
+[Unit]
+Description=Internal Temperature Monitor for Raspberry Pi
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/RPiTempLogger
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

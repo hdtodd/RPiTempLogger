@@ -26,6 +26,7 @@ up periodically, it samples the data, opens the database, appends the reading, a
 database.  So exposure to table corruption as a result of a Pi restart or crash is minimized.
 
   Written by HDTodd, Williston Vermont, November, 2015
+  Updated to include <unistd.h> ref for sleep() definition, 2018.03.18
 */
 
 #ifndef DelaySec
@@ -37,6 +38,7 @@ database.  So exposure to table corruption as a result of a Pi restart or crash 
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <sqlite3.h>
 #include <time.h>
 
