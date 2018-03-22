@@ -16,13 +16,13 @@
 #	 c.  To provide for graphical display of collected data,
 #		copy the index.php file to /var/www and
 #		copy the CPUTemps.py file to /var/www/cgi-bin	
-#	 d.  Copy a .service file to /etc/systemd/user 
+#	 d.  Copy a .service file to unit .service directory
 #		and set up systemd service
 #	     (rc.local system startup commented out in install: )
 #    3.  make clean: cleanup of files in this directory
-#    4.  make really-clean: clean + remove executable and
-#	 daemon startup line in /etc/rc.local
-#    5.  make scrupulously-clean: really-clean + remove database file
+#    4.  make really-clean: clean + remove executable
+#    5.  make uninstall: really-clean + remove executable, web files,
+#	   & database file
 #
 #There are a number of parameters here for location of the database,
 # location of the executable, etc.  If you change any of them, check
@@ -31,11 +31,14 @@
 
 CC = gcc
 PROJ = RPiTempLogger
-# systemctl location and directory for unit .service files
+# DEFAULT to Raspbian systemctl location and directory for unit .service files
 SYSCTL = /bin/systemctl
-# for openSUSE, use /usr/bin/systemctl
 UNITDIR= /usr/lib/systemd/system/
-# for openSUSE, use /etc/systemd/user/
+# openSUSE systemctl & .service locations
+ifdef SUSE
+SYSCTL = /usr/bin/systemctl
+UNITDIR= /etc/systemd/user/
+endif
 
 #  If you change BINDIR, the destination for the executable here, change it
 #    in the /etc/rc.local system startup file, too, if you've
@@ -76,25 +79,20 @@ ${PROJ}: ${OBJS}
 	$(CC) -o $@ $(LDFLAGS) ${OBJS}
 
 install:
-#	Create the database directory if necessary, and
-#	  check to see if we can move the executable to 
-#	  the destination directory; then move it
-
-
+#Check that we have root access to install components.
+#  Create the database directory if necessary, and
+#  check to see if we can move the executable to 
+#  the destination directory; then move it
 #If DBDIR exists, we don't worry about writing it since root will be running the
 #  RPiTempLogger executable and should have privs to write that directory and will
 #  create the database file if needed.  But we do need to make sure the directory exists.
-
-#Now create the directories for the web-based graphing programs if necessary
-
+#Create the directories for the web-based graphing programs if necessary
 #If systemd is in use, make sure RPiTempLogger service is stopped first
 #  then install files and enable+start service
-
 #Copy the graphing files to the web site
 #If you don't already have an index.php in /var/www,
 #  manually rename the index-RTL file there to be index.php;
-#  If you don't have an index.html file there,
-#  this will become your web home page
+#  If you don't have an index.html file there, this will become your web home page.
 
 	@if  [ `id -u` != 0 ] ; then \
 		echo "You don't have root privileges needed to install ${PROJ}" ; \
@@ -145,12 +143,8 @@ install:
 			fi ; \
 		fi
 
-
-
-
-#		if [ ! -w ${BINDIR} ] ; then echo "BINDIR not writeable" ; fi \
-
-#	ARCHIVAL: rc.local installation
+#	ARCHIVAL: the following is detritus left from old rc.local installation
+#	If you're using rc.local and not systemd, these may come in handy.
 #	Make sure there is only one entry in the boot startup file
 #	'/etc/rc.local' by deleting any prior entries, in case
 #	we've been installed before.  Ignore path in prior installs
@@ -168,7 +162,6 @@ clean:
 really-clean: 
 	/bin/rm -f *~ *.o  ${PROJ} ${BINDIR}${PROJ}
 
-
 #WARNING: this one deletes the database file!
 uninstall:
 	/bin/rm -f *~ *.o  $(PROJ) ${BINDIR}${PROJ} ${DBDIR}${DBNAME}
@@ -181,6 +174,7 @@ uninstall:
 		/bin/rm -f ${PHPDIR}CPUTemps.py ; \
 		/bin/rm -f ${WWWDIR}/index-RTL.php ; \
 		fi
+#And, again, useful if you're using rc.local rather than systemd
 #	if [ -e ${RCLOCAL} ] ; \
 #	then sed -i -e '/${PROJ} &/d' ${RCLOCAL} ; \
 #	fi
