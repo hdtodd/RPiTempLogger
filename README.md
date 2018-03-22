@@ -53,6 +53,6 @@ as a prototype for a web site home page that will display the data graphically.
 ### Author
 
 Written by HDTodd, Williston Vermont, November, 2015.
-Updated Makefile for installation under systemd March, 2018.
+Updated Makefile for installation under systemd and to support installation on openSUSE in March, 2018.
 hdtodd@gmail.com
 
