@@ -9,6 +9,8 @@ Use sqlite3 to view the data, e.g.:
 
     $sqlite3 /var/databases/MyPiTemps.db
     sqlite> select * from PiCoreTemps where DateTime > datetime('now', '-48 hours');
+    sqlite> .mode line
+    sqlite> select count(cputemp),avg(cputemp),max(cputemp),min(cputemp) from PiCoreTemps where datetime>datetime('now', '-24 hours');
 
 The PHP-generated web page is suitable as the foundation for a web site page that displays a graphical presentation of the time/temp data.  The Python program generates an html file for graphical presentation, and that file can be viewed with an html browser.  The prototype web PHP code and the Python program use the same Google Charts tools and so generate equivalent displays.
 
