@@ -12,6 +12,11 @@ Use sqlite3 to view the data, e.g.:
     sqlite> .mode line
     sqlite> select count(cputemp),avg(cputemp),max(cputemp),min(cputemp) from PiCoreTemps where datetime>datetime('now', '-24 hours');
 
+Alternatively, to get a summary of the temperature readings for the past 24 hours, use the sqlite3 provided
+(installed in /usr/local/bin):
+
+    $sqlite3 /var/databases/MyPiTemps.db < /usr/local/bin/CheckTemps.sqlite3
+
 The PHP-generated web page is suitable as the foundation for a web site page that displays a graphical presentation of the time/temp data.  The Python program generates an html file for graphical presentation, and that file can be viewed with an html browser.  The prototype web PHP code and the Python program use the same Google Charts tools and so generate equivalent displays.
 
 [Sample page from index.php](https://github.com/hdtodd/RPiTempLogger/blob/master/RPiTL.jpg)

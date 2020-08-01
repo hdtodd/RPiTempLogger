@@ -31,9 +31,10 @@
 
 CC = gcc
 PROJ = RPiTempLogger
+RPT = CheckTemp.sqlite3
 # DEFAULT to Raspbian systemctl location and directory for unit .service files
 SYSCTL = /bin/systemctl
-UNITDIR= /usr/lib/systemd/system/
+UNITDIR= /lib/systemd/system/
 # openSUSE systemctl & .service locations
 ifdef SUSE
 SYSCTL = /usr/bin/systemctl
@@ -134,6 +135,7 @@ install:
 				${SYSCTL} stop ${PROJ}.service ; \
 				fi ; \
 			cp ${PROJ} ${BINDIR} ; \
+			cp ${RPT} ${BINDIR} ; \
 			cp ${PROJ}.service ${UNITDIR} ; \
 			${SYSCTL} enable ${PROJ}.service ; \
 			${SYSCTL} start ${PROJ}.service ; \
