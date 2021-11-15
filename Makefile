@@ -77,7 +77,7 @@ all:	${PROJ}
 	$(CC) $(CFLAGS) -c $<
 
 ${PROJ}: ${OBJS}
-	$(CC) -o $@ $(LDFLAGS) ${OBJS}
+	$(CC) -o $@ ${OBJS} $(LDFLAGS)
 
 install:
 #Check that we have root access to install components.
