@@ -27,7 +27,7 @@ The data logger will acquire data, and you can obtain formatted text reports on 
 
 If you intend to display the results graphically, you'll need to either be running Apache2 (if you want to display the graphs on your own web pages) or you'll generate an html file with the Python program included here and then view the html file with a browser.  If you haven't done so, you might install Apache2 in preparation for using this package.  The Apache2 installation on Raspbian is well documented and won't be repeated here.
 
-The PHP code that pulls the data from the sqlite3 database and formats it for the Google Charts graphing system requires the php-sqlite3 module.  Even if you have Apache2 running and have installed the sqlite3 packages, you might not have installed the interface module.  Prepare for graphical display by installing that package: `sudo apt-get install php5-sqlite`.
+The PHP code that pulls the data from the sqlite3 database and formats it for the Google Charts graphing system requires the php-sqlite3 module.  Even if you have Apache2 running and have installed the sqlite3 packages, you might not have installed the interface module.  Prepare for graphical display by installing that package: `sudo apt-get install php-sqlite3`.
 
 The graphing programs use the Google Charts system for doing the actual graphing, and that system in invoked at the time those programs are run, so no package installation is required for those.  The Makefile installation is set to install the logging program as a daemon so that it is automatically started at boot time.
 
