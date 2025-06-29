@@ -48,7 +48,7 @@ The C program contains several compile parameters that can be changed, too:
 
 ### Testing
 
-Run as `./RPiTempLogger` to test the program.  It starts by sampling an printing the temperature and adding the sample data to the sqlite3 database; it repeats that (every 5 minutes, by default) until terminated.  Run as `./RPiTempLogger &` to run detached, which it will do until a reboot.   Do `sudo make install` to install RPiTempLogger as a service that starts at boot time under systemd  (see variation above for openSUSE install).  Or include the command `/usr/local/bin/RPiTempLogger` in a startup script to run as daemon automatically whenever the system is rebooted.
+Run as `./RPiTempLogger` to test the program.  It starts by sampling and printing the temperature and adding the sample data to the sqlite3 database; it repeats that (every 5 minutes, by default) until terminated.  Run as `./RPiTempLogger &` to run detached, which it will do until a reboot.   Do `sudo make install` to install RPiTempLogger as a service that starts at boot time under systemd  (see variation above for openSUSE install).  Or include the command `/usr/local/bin/RPiTempLogger` in a startup script to run as daemon automatically whenever the system is rebooted.
 
 ### Routine Operation and Displaying Data
 
